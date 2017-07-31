@@ -81,6 +81,8 @@ class VirtWhoConfigUITestCase(UITestCase):
         2
         """
         pass
+
+
 class VirtWhoConfigAPI(APITestCase):
     def test_positive_vm_create(self):
         """
@@ -251,19 +253,20 @@ class VirtWhoConfigCLITestCase():
         """
 
     def test_positive_create_cli_deploy_cli(self):
-        """
-        2. Create config using hammer, deploy using hammer.
+        """ Create config using hammer, deploy using hammer.
         """
     pass
 
     def test_negative_virt_who_user_login(self):
-        """
-        17. Make sure the users created by virt-who config is not able to access UI/CLI
-        1. Create a virt-who configuration
-        2. Attempt to login the UI with the user created by the virt-who configurator. Verify the login is blocked
-        3. Attempt to login using Hammer with the user created by the virt-who configurator. Verify the login is blocked
-        4. Attempt to click the username link displayed in related task details.
-        :return:
+        """ Make sure the users created by virt-who config is not able to access UI/CLI
+
+        :id: 1fe2daec-b1b0-4dd9-bfa2-cd81ee13977b
+
+        :steps:
+            1. Create a virt-who configuration
+            2. Attempt to login the UI with the user created by the virt-who configurator. Verify the login is blocked
+            3. Attempt to login using Hammer with the user created by the virt-who configurator. Verify the login is blocked
+            4. Attempt to click the username link displayed in related task details.
         """
 
 
@@ -271,35 +274,45 @@ class VirtWhoConfigCLITestCase():
 
 class VirtWhoConfigEndToEnd(TestCase):
 
-    def test_positive_libvirt(self):
-        pass
+    def test_positive_hypervisors(self):
+        """End to End scenarios. For all supported Hypervisors (Libvirt, vmware, RHEV, Hyper-V, Xen)
 
+        :id: ce67645a-8435-4e2a-9fd5-c54f2a11c44b
 
-    def test_positive_rhev(self):
-        pass
-
-    def test_positive_rhv(self):
-        pass
-
-    def test_positive_hyperv(self):
-        pass
-
-    def test_positive_xen(self):
-        pass
+        :steps:
+                1. Associate a VDC subscription to the hypervisor host
+                2. Create a Virt-who configuration for the hypervisor.
+                3. Deploy the virt-who configuration
+                4. Create VM1 on the hypervisor
+                5. Create activation key with Content view, but DO NOT associate subscription.
+                6. Register  VM using the activation key.
+                7. Wait until the next report comes to the satellite
+                8. Verify the VM is report to the Satellite, and the VDC subscription is applied to it.
+                9. Repeat for each supported hypervisor (Libvirt, vmware, RHEV, Hyper-V, Xen)
+        """
 
 class VirtWhoConfigGeneralTestcase(TestCase):
 
     def test_positive_multiple_config_single_instance(self):
         """ Create multiple configs, add to same virt-who instance
-        1. Create a virt-who config (VHCONFIG1) for VMware
-        2. Create a virt-who config (VHCONFIG2) for RHV
-        3. Deploy VHCONFIG1 and VHCONFIG2 to the same virt-who server
-        4. Create guests on the VMware and RHV hypervisors
-        5. Verify the correct information is reported to the Satellite.
+
+        :id: 5d553f0d-4dc8-4ce4-8fa4-65bb8a08c8af
+
+        :steps:
+            1. Create a virt-who config (VHCONFIG1) for VMware
+            2. Create a virt-who config (VHCONFIG2) for RHV
+            3. Deploy VHCONFIG1 and VHCONFIG2 to the same virt-who server
+            4. Create guests on the VMware and RHV hypervisors
+            5. Verify the correct information is reported to the Satellite.
+
         """
 
     def test_positive_multiple_config_same_instance(self):
         """Create multiple configs for multiple virt-who instances
+
+        :id: 053473df-7a83-4727-a96b-385fa87db1c9
+
+        :steps:
                 1. Create a virt-who config (VHCONFIG1) for VMware
                 2. Create a virt-who config (VHCONFIG2) for RHV
                 3. Deploy VHCONFIG1 and VHCONFIG2 to the 2 different virt-who server
@@ -311,6 +324,10 @@ class VirtWhoConfigGeneralTestcase(TestCase):
 
     def test_positive_delete_config_delete_user(self):
         """Verify when a config is deleted the associated user is deleted.
+
+        :id: 9fdee7f2-833c-47e0-9d58-cd0c9fdd15fe
+
+        :steps:
                 1. Create a virt-who configuration and deploy it to a virt-who server.
                 2. Delete the configuration on the Satellite.
                 3. Verify the virt-who server can no longer send reports to the Satellite.
@@ -319,6 +336,10 @@ class VirtWhoConfigGeneralTestcase(TestCase):
 
     def test_positive_register_user_password(self):
         """Register guest with username/password
+
+        :id:
+
+        :steps:
                 1. Create a virt-who configuration for a hypervisor
                 2. Create a guest on a hypervisor.
                 3. Attempt to register the guest using the admin username/password .
@@ -329,6 +350,10 @@ class VirtWhoConfigGeneralTestcase(TestCase):
 
     def test_positive_register_guess_no_subs(self):
         """Register guest with activation key with no subscriptions
+
+        :id: 4a16d5b1-2c89-41d9-8ed3-55d8de2431ab
+
+        :steps:
                 1. Create a virt-who configuration for a hypervisor
                 2. Create a activation key with no subscription configuration
                 3. Create a guest on a hypervisor
@@ -338,6 +363,10 @@ class VirtWhoConfigGeneralTestcase(TestCase):
 
     def test_positive_virt_who_proxy(self):
         """ Test virt-who with web proxy
+
+        :id: 19007b6d-4845-48e6-aedf-2c4f76eebf91
+
+        :steps:
                 1. Create a virt-who configuration with a web proxy set
                 2. Setup a Satellite and virt-who server such that the virt-who server can only reach the satellite via the web proxy.
                 3. Deploy the configuration to the virt-who server.
@@ -345,32 +374,54 @@ class VirtWhoConfigGeneralTestcase(TestCase):
         """
 
     def test_positive_filtering_whitelist(self):
-        """ Whitelist
-            a. Create a virt-who configuration with a pointing to a virtualization provider with 3 hypervisor hosts. Create a whitelist that specifies 2 hypervisor hosts using UUID hypervisor ids.
+        """ Whitelist filters
+        :id: f871ab49-1807-4a28-9bfc-a7f313602cc0
+
+        :setup:
+            Create a virt-who configuration with a pointing to a virtualization provider with 3 hypervisor hosts.
+
+        :steps:
+            a.  Create a whitelist that specifies 2 hypervisor hosts using UUID hypervisor ids.
             b. Create a guests on the 2 hypervisors that match the whitelist, verify they are reported and can attach to a VDC subscriptions.
             c. Create a guest on a hypervisor that does not match the whitelist, verify it CANNOT get a VDC subscription
+
+        :expectedresult: Correct config file generated, non-whitelisted servers are not reported.
         """
 
     def test_positive_filtering_blacklist(self):
-        """ Blacklist
-                a. Create a virt-who configuration with a pointing to a virtualization provider with 3 hypervisor hosts. Create a whitelist that specifies 2 hypervisor hosts using UUID hypervisor ids.
+        """ Blacklist filters
+
+        :id: 9e823d10-1b67-45ea-b13d-75dd058de3d6
+
+        :setup:
+            Create a virt-who configuration with a pointing to a virtualization provider with 3 hypervisor hosts.
+
+        :steps:
+                a. Create a blacklist that specifies 2 hypervisor hosts using UUID hypervisor ids.
                 b. Create a whitelist with 2 hypervisor that match the blacklist, verify they are not reported and CANNOT attach to a VDC subscriptions.
                 c. Create a guest on a hypervisor that does not match the blacklist, verify it can attach to a VDC subscription
                 d. Repeat with each Hypervisor ID types (Hostname, hwuuid)
+
+        :expectedresult: Correct config file generated, Blacklisted Hypervisors are not reported.
         """
 
     def test_positive_filtering_unlimited(self):
-        """Unlimited
+        """Unlimited filters
                 a. Create a configuration with unlimited filtering pointing to a virtualization provider with 3 hypervisor hosts
                 b. Verify all hypervisors hosts are reported to Satellite and attach to VDC subscriptions.
         """
 
     def test_positive_intervals(self):
         """Intervals
+        :id: 76a31b43-1738-4e6a-acd7-604fff19ae79
+
+        :steps:
                 1. Create a virt-who configuration with a reporting interval of every 1 hour.
                 2. Verify a Virt-who configuration is created that sets the interval to 1 hour
                 3. Verify a report is sent every hour
                 4. Repeat for each supported interval.
+
+        :expectedresult: Config file is generaled with correct interval set.
 
         """
 
