@@ -288,6 +288,7 @@ class VirtWhoConfigEndToEnd(TestCase):
         pass
 
 class VirtWhoConfigGeneralTestcase(TestCase):
+
     def test_positive_multiple_config_single_instance(self):
         """ Create multiple configs, add to same virt-who instance
         1. Create a virt-who config (VHCONFIG1) for VMware
@@ -325,6 +326,57 @@ class VirtWhoConfigGeneralTestcase(TestCase):
                 5. Verify a guest can be registered using the REGUSER user.
 
         """
+
+    def test_positive_register_guess_no_subs(self):
+        """Register guest with activation key with no subscriptions
+                1. Create a virt-who configuration for a hypervisor
+                2. Create a activation key with no subscription configuration
+                3. Create a guest on a hypervisor
+                4. Verify the guest can be registered using the activation key.
+
+        """
+
+    def test_positive_virt_who_proxy(self):
+        """ Test virt-who with web proxy
+                1. Create a virt-who configuration with a web proxy set
+                2. Setup a Satellite and virt-who server such that the virt-who server can only reach the satellite via the web proxy.
+                3. Deploy the configuration to the virt-who server.
+                4. Verify that reports are sent to the virt-who server.
+        """
+
+    def test_positive_filtering_whitelist(self):
+        """ Whitelist
+            a. Create a virt-who configuration with a pointing to a virtualization provider with 3 hypervisor hosts. Create a whitelist that specifies 2 hypervisor hosts using UUID hypervisor ids.
+            b. Create a guests on the 2 hypervisors that match the whitelist, verify they are reported and can attach to a VDC subscriptions.
+            c. Create a guest on a hypervisor that does not match the whitelist, verify it CANNOT get a VDC subscription
+        """
+
+    def test_positive_filtering_blacklist(self):
+        """ Blacklist
+                a. Create a virt-who configuration with a pointing to a virtualization provider with 3 hypervisor hosts. Create a whitelist that specifies 2 hypervisor hosts using UUID hypervisor ids.
+                b. Create a whitelist with 2 hypervisor that match the blacklist, verify they are not reported and CANNOT attach to a VDC subscriptions.
+                c. Create a guest on a hypervisor that does not match the blacklist, verify it can attach to a VDC subscription
+                d. Repeat with each Hypervisor ID types (Hostname, hwuuid)
+        """
+
+    def test_positive_filtering_unlimited(self):
+        """Unlimited
+                a. Create a configuration with unlimited filtering pointing to a virtualization provider with 3 hypervisor hosts
+                b. Verify all hypervisors hosts are reported to Satellite and attach to VDC subscriptions.
+        """
+
+    def test_positive_intervals(self):
+        """Intervals
+                1. Create a virt-who configuration with a reporting interval of every 1 hour.
+                2. Verify a Virt-who configuration is created that sets the interval to 1 hour
+                3. Verify a report is sent every hour
+                4. Repeat for each supported interval.
+
+        """
+
+
+
+
 
 
 
