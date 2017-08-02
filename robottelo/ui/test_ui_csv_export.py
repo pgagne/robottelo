@@ -20,24 +20,27 @@ from robottelo.test import UITestCase
 class UICSVExportHosts(UITestCase):
 
 
-    def test_positive_multipage(self):
+    def test_positive_single_page(self):
+        pass
+
+    def test_positive_multi_page(self):
         """
-        :setup:
-            Populate page with >20 (or max# per-page) items. For example 30
+        :id: cb615ed3-2f4c-45b5-904e-890ccb587842
+
         :steps:
-            1. Press export CSV button
+            1. Populate page with >20 (or max# per-page) items. For example 30
+            2. Press export CSV button
+
         :expectedresult: Exported CSV will have all rows (30)
 
         """
-
-
-
 
     def test_positive_organization_filter(self):
         """
         :s
         :return:
         """
+
     def test_negative_organization_filter(self):
         pass
 
@@ -101,12 +104,85 @@ class UICSVExportHostsColumns(UITestCase):
         pass
 
 class UICSVExportFacts(UITestCase):
-    pass
+
+    def test_positive_single_page(self):
+        pass
+
+    def test_positive_multipage(self):
+        """
+        :id: cb615ed3-2f4c-45b5-904e-890ccb587842
+
+        :setup:
+            1. Populate page with >20 (or max# per-page) items. For example 30
+
+        :steps:
+
+            2. Press export CSV button
+
+        :expectedresult: Exported CSV will have all rows (30)
+
+        """
+
+        def test_positive_organization_filter(self):
+            """
+            :s
+            :return:
+            """
+
+        def test_negative_organization_filter(self):
+            pass
+
+        def test_positive_location_filter(self):
+            pass
+
+        def test_negative_location_filter(self):
+            pass
+
+        def test_combo_filter(self):
+            pass
+
+        def test_positive_filter_multi_page(self):
+            pass
+
+        def test_positive_filter_single_page(self):
+            pass
+
+        def test_positive_nested_facts(self):
+            """
+            Recurse down a nested fact list
+            :param self:
+            :return:
+            """
 
 class UICSVExportFactsColumns(UITestCase):
+
+    def setUp(self):
+        pass
+
+    def test_positive_name(self):
+        pass
+
+    def test_positive_value(self):
+        pass
+
+    def test_positive_origin(self):
+        pass
+
+    def test_positive_reported(self):
+        pass
+
+    def test_postive_nested_value(self):
+        """
+        Verify what ever the end result of https://bugzilla.redhat.com/show_bug.cgi?id=1477341 is.
+
+        :return:
+        """
+        pass
+
+
+
+class UICSVExportFactsNested(UITestCase):
     pass
-
-
 
 
 
