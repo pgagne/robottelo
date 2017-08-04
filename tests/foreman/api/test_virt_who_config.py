@@ -20,38 +20,59 @@ from robottelo.test import UITestCase, TestCase, APITestCase
 class VirtWhoConfigUITestCase(UITestCase):
     """Implements Virt-who-configure UI tests"""
 
+    @run_only_on('sat')
+    @stubbed()
+    @tier1
     def test_positive_welcome_page(self):
         """
-        1. Verify welcome page
+        :id: e25804fd-98cb-46bb-aa29-958ceb361292
 
-        :return:
+        :steps:
+            1. Verify welcome page
+
+        :expectedresult:
         """
 
+    @run_only_on('sat')
+    @stubbed()
+    @tier1
     def test_positive_configurations_page(self):
         """
-        1. Create virt-who-configurations
-        2. Verify the new virt-who Configurations UI (the page which lists all virt-who configurations)
+        :id: fa6d5ce4-08b7-41fa-b7ab-ac5a018cf68a
+
+        :steps:
+            1. Create virt-who-configurations
+            2. Verify the new virt-who Configurations UI (the page which lists all virt-who configurations)
+
 
         """
         pass
 
-    def test_positive_shell_script_display(self):
-        pass
-
+    @run_only_on('sat')
+    @stubbed()
+    @tier1
     def test_postitve_config_change_redeploy(self):
+        """ change the config and redeploy the script.
+
+        :id: 466d07b3-3cc7-43ef-b820-a5510b43e4dd
+
+        :steps:
+            1. Edit virt-who configuration and verify the updated shell script, redeploy the script
         """
-        13.  Edit virt-who configuration and verify the updated shell script, redeploy the script
-        """
 
 
-
+    @run_only_on('sat')
+    @stubbed()
+    @tier1
     def test_negative_virt_who_user_login(self):
-        """
-        17. Make sure the users created by virt-who config is not able to access UI/CLI
-        1. Create a virt-who configuration
-        2. Attempt to login the UI with the user created by the virt-who configurator. Verify the login is blocked
-        3. Attempt to login using Hammer with the user created by the virt-who configurator. Verify the login is blocked
-        4. Attempt to click the username link displayed in related task details.
+        """ Make sure the users created by virt-who config is not able to access UI/CLI
+        :id: 9a8bb27a-af91-47cc-9004-6e3497363dbb
+
+        :steps:
+            1. Create a virt-who configuration
+            2. Attempt to login the UI with the user created by the virt-who configurator. Verify the login is blocked
+            3. Attempt to login using Hammer with the user created by the virt-who configurator. Verify the login is blocked
+            4. Attempt to click the username link displayed in related task details.
         :return:
         """
 
@@ -76,32 +97,49 @@ class VirtWhoConfigUITestCase(UITestCase):
         :CaseImportance: Critical
         """
 
+    @run_only_on('sat')
+    @stubbed()
+    @tier1
     def test_positive_config_page_empty(self):
         """
-        2
         """
         pass
 
 
 class VirtWhoConfigAPI(APITestCase):
-    def test_positive_vm_create(self):
-        """
-        8. Create new VM in a supported hypervisor and check if it is reported to Satellite (waiting until the next virt-who report comes in)
 
-        :return:
+    @run_only_on('sat')
+    @stubbed()
+    @tier1
+    def test_positive_vm_create(self):
+        """ Register a vm on virt-who hyper visor
+        :id: 701b22b8-fe92-4dd3-8d7d-c7b5efb7281b
+
+        :steps:
+            1. Create new VM in a supported hypervisor and check if it is reported to Satellite (waiting until the next virt-who report comes in)
+
+
         """
         pass
 
     def test_negative_vm_create(self):
-        """
-        9. Check if there are no virt-who reports reported if there is no change in guest-host mapping in hypervisor
+        """ Register a vm on non-virt-who hyper visor
+
+        :id: abecc851-2475-4455-9c12-63a73fcb09bb
+
+        :steps:
+            1. Check if there are no virt-who reports reported if there is no change in guest-host mapping in hypervisor
 
         :return:
         """
         pass
 
     def test_positive_config_update(self):
-        pass
+        """Update a config, vei
+
+
+        :return:
+        """
 
     def test_negative_config_update(self):
         pass
