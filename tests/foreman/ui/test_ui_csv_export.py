@@ -20,9 +20,16 @@ from robottelo.test import UITestCase
 class UICSVExportHosts(UITestCase):
 
 
+    @stubbed
+    @tier1
     def test_positive_single_page(self):
-        pass
+        """
+        :id: be5e2b2d-3a93-4803-8c6e-d81a97c5a1a5
 
+        :step
+        """
+    @stubbed
+    @tier1
     def test_positive_multi_page(self):
         """
         :id: cb615ed3-2f4c-45b5-904e-890ccb587842
@@ -35,9 +42,10 @@ class UICSVExportHosts(UITestCase):
 
         """
 
+    @tier1
     def test_positive_organization_filter(self):
         """
-        :s
+        :id: 76756510-eaf1-48be-bd87-8f218c5378cb
         :return:
         """
 
@@ -182,6 +190,9 @@ class UICSVExportFactsColumns(UITestCase):
 
 
 class UICSVExportFactsNested(UITestCase):
+    pass
+
+class UICSVExportConfigMgmtReports(UITestCase):
     pass
 
 

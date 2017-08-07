@@ -28,9 +28,7 @@ class VirtWhoConfigUITestCase(UITestCase):
         :id: e25804fd-98cb-46bb-aa29-958ceb361292
 
         :steps:
-            1. Verify welcome page
-
-        :expectedresult:
+            1. Verify UI Elements on welcome page welcome page
         """
 
     @run_only_on('sat')
@@ -73,7 +71,6 @@ class VirtWhoConfigUITestCase(UITestCase):
             2. Attempt to login the UI with the user created by the virt-who configurator. Verify the login is blocked
             3. Attempt to login using Hammer with the user created by the virt-who configurator. Verify the login is blocked
             4. Attempt to click the username link displayed in related task details.
-        :return:
         """
 
     @run_only_on('sat')
@@ -84,13 +81,11 @@ class VirtWhoConfigUITestCase(UITestCase):
 
         :id: db6bbc68-2047-4c7d-af5b-31aee0030318
 
-        :setup: 
-
         :steps:
-            1. 
+            1. Create multiple virt-who configurations
 
 
-        :expectedresults: 
+        :expectedresults: All configurations are listed on the config page
 
         :Caseautomation: notautomated
 
@@ -102,6 +97,11 @@ class VirtWhoConfigUITestCase(UITestCase):
     @tier1
     def test_positive_config_page_empty(self):
         """
+
+        :id: bb208160-9bd0-49ee-8971-6f71d48808fb
+
+        :steps:
+            1. Create multiple virt-who configurations
         """
         pass
 
@@ -122,6 +122,9 @@ class VirtWhoConfigAPI(APITestCase):
         """
         pass
 
+    @run_only_on('sat')
+    @stubbed()
+    @tier1
     def test_negative_vm_create(self):
         """ Register a vm on non-virt-who hyper visor
 
@@ -134,26 +137,35 @@ class VirtWhoConfigAPI(APITestCase):
         """
         pass
 
+    @run_only_on('sat')
+    @stubbed()
+    @tier1
     def test_positive_config_update(self):
-        """Update a config, vei
+        """Update a config, verify it it changed and redploy it
 
+        :id: 6b2cc2c3-959b-468b-9865-0f01decd2249
 
-        :return:
+        :steps:
+            1. Update a config, verify it it changed and redploy it
         """
 
-    def test_negative_config_update(self):
-        pass
-
+    @run_only_on('sat')
+    @stubbed()
+    @tier1
     def test_postive_config_intervals(self):
-        """ Intervals
-        1. Create a virt-who configuration with a reporting interval of every 1 hour.
-        2. Verify a Virt-who configuration is created that sets the interval to 1 hour
-        3. Verify a report is sent every hour
-        4. Repeat for each supported interval.
+        """ Verify intervals Intervals
 
-        :return:
+        :steps:
+
+        :id: 7e1bb498-4e63-44e8-be97-83e07601f56d
+
+        :steps:
+            1. Create a virt-who configuration with a reporting interval of every 1 hour.
+            2. Verify a Virt-who configuration is created that sets the interval to 1 hour
+            3. Verify a report is sent every hour
+            4. Repeat for each supported interval.
         """
-        pass
+
 
 class VirtWhoConfigDashboardUITestCase(UITestCase):
     """
@@ -165,6 +177,9 @@ class VirtWhoConfigDashboardUITestCase(UITestCase):
 
     """
 
+    @run_only_on('sat')
+    @stubbed()
+    @tier1
     def test_positive_dashboard_no_reports(self):
         """
         - No reports
@@ -172,6 +187,9 @@ class VirtWhoConfigDashboardUITestCase(UITestCase):
         """
         pass
 
+    @run_only_on('sat')
+    @stubbed()
+    @tier1
     def test_positive_dashboard_out_of_date(self):
         """
         - Out of Date
@@ -180,6 +198,9 @@ class VirtWhoConfigDashboardUITestCase(UITestCase):
         """
         pass
 
+    @run_only_on('sat')
+    @stubbed()
+    @tier1
     def test_positive_dashboard_up_to_date(self):
         """
         - Up to Date
@@ -187,10 +208,16 @@ class VirtWhoConfigDashboardUITestCase(UITestCase):
         """
         pass
 
+    @run_only_on('sat')
+    @stubbed()
+    @tier1
     def test_positive_lastest_out_of_date(self):
-        """
-        - Latest out of date Configurations
-        :return:
+        """Verify dashboard widget Latest out of date Configurations
+
+        :id: 1df6d171-df57-41ef-9443-c7bb15aab473
+
+        :steps:
+            1.Latest out of date Configurations
         """
 
 
@@ -198,57 +225,79 @@ class VirtWhoConfigDashboardUITestCase(UITestCase):
 
 
 class VirtWhoConfigRoleApiTests(APITestCase):
-    
+
+
+    @run_only_on('sat')
+    @stubbed()
+    @tier1
     def test_positive_role_manager(self):
         """virt-who Manager
-        1. Create a user with ONLY the virt-who manager role.
-        2. Verify the user can create virt-who configurations
-        3. Verify the user can edit an existing virt-who configuration
-        4. Verify the user can delete a virt-who configuration
-        5. Verify the user can see virt-who reporting information through the dashboard
-        6. Verify the user can do no other actions
-        :return:
+
+        :id: 4164bdde-f532-480c-b41e-747e87cf7d05
+        :steps:
+            1. Create a user with ONLY the virt-who manager role.
+            2. Verify the user can create virt-who configurations
+            3. Verify the user can edit an existing virt-who configuration
+            4. Verify the user can delete a virt-who configuration
+            5. Verify the user can see virt-who reporting information through the dashboard
+            6. Verify the user can do no other actions
         """
         pass
     
     def test_negative_role_manager(self):
         """
-        1. Verify the user can do no other actions
+
+        :id: e93b415a-7442-4f27-9c52-15c72f3e1414
+        :steps:
+            1. Verify the user can do no other actions
 
         :return:
         """
         pass
 
     def test_positive_role_reporter(self):
-        """
-        2. virt-who Reporter
-        a. Create a user with ONLY the virt-who reporter role.
-        b. Configure virt-who WITHOUT using the virt-who config plugin. Set the Satellite the created user.
-        c. Create a vm to cause virt-who to send a report to satellite.
-        d. Verify the virt-who server send a report to the satellite.
+        """ Verify virt-who Reporter role
+
+        :id: 63462338-a6f5-48eb-8b04-433c53882817
+
+        :steps:
+            a. Create a user with ONLY the virt-who reporter role.
+            b. Configure virt-who WITHOUT using the virt-who config plugin. Set the Satellite the created user.
+            c. Create a vm to cause virt-who to send a report to satellite.
+            d. Verify the virt-who server send a report to the satellite.
         """
         pass
 
     def test_negative_role_reporter(self):
-        """
-                e. Verify the user can do no other actions
+        """Verify virt-who Reporter role
+            :id: 7dee0965-9ec4-4d76-a6ae-f2eec1960bac
+
+            :steps:
+                e. Verify the user can do no other actions other then those in test_positive_role_reporter
 
         :return:
         """
         pass
 
     def test_positive_role_viewer(self):
-        """
-        3. virt-who Viewer
-        a. Create a user with ONLY the virt-who Viewer role.
-        b. Verify the user can view virt-who configurations.
-        c. Verify the user CANNOT delete or modify virt-who configurations
+        """ Verify virt-who viewer role
+
+        :id: 43314ae3-6768-44b5-a6bb-ee64ae381cd0
+
+        :steps:
+            a. Create a user with ONLY the virt-who Viewer role.
+            b. Verify the user can view virt-who configurations.
+            c. Verify the user CANNOT delete or modify virt-who configurations
         """
         pass
 
     def test_negative_role_viewer(self):
-        """
-        d. Verify the user can do no other actions
+        """Verify virt-who viewer role
+
+        :id: 6919a748-423e-4843-bafe-eb98b7159c90
+
+        :steps:
+            d. Verify the user can do no other actions other then those in test_positive_role_viewer
 
         :return:
         """
@@ -261,7 +310,7 @@ class VirtWhoConfigUpgrade(APITestCase):
     def test_positive_satellite_upgrade(self):
         """ Satellite upgrade
 
-        :uuid: 0e301c08-8bef-4bea-a690-d4b0760949e8
+        :id: 0e301c08-8bef-4bea-a690-d4b0760949e8
 
         :Steps:
 
@@ -286,12 +335,20 @@ class VirtWhoConfigUpgrade(APITestCase):
 class VirtWhoConfigCLITestCase():
     def test_positive_create_cli_deploy_ui(self):
         """Verify  “hammer virt-who-config”
+
+        :id: e273e2b3-79dc-46f5-8925-688f45f6b192
+
+        :steps:
             1. Create config in UI, deploy using “hammer virt-who-config deploy”
-        :return:
         """
 
     def test_positive_create_cli_deploy_cli(self):
-        """ Create config using hammer, deploy using hammer.
+        """ Verify  “hammer virt-who-config
+
+        :id: 776abf86-a96a-4b3a-8a6e-92face670471
+
+        :steps:
+            1. Create config using hammer, deploy using hammer.
         """
     pass
 
@@ -375,7 +432,7 @@ class VirtWhoConfigGeneralTestcase(TestCase):
     def test_positive_register_user_password(self):
         """Register guest with username/password
 
-        :id:
+        :id: 84577e65-f5d4-40f0-80bf-919e9f71b4b4
 
         :steps:
                 1. Create a virt-who configuration for a hypervisor
@@ -445,12 +502,16 @@ class VirtWhoConfigGeneralTestcase(TestCase):
 
     def test_positive_filtering_unlimited(self):
         """Unlimited filters
+
+        :id: 979586c4-031e-4411-bb8b-eb17cad44651
+
+        :steps:
                 a. Create a configuration with unlimited filtering pointing to a virtualization provider with 3 hypervisor hosts
                 b. Verify all hypervisors hosts are reported to Satellite and attach to VDC subscriptions.
         """
 
     def test_positive_intervals(self):
-        """Intervals
+        """ Verify Intervals
         :id: 76a31b43-1738-4e6a-acd7-604fff19ae79
 
         :steps:
