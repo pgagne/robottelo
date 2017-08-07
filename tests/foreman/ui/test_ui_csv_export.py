@@ -187,8 +187,6 @@ class UICSVExportFactsColumns(UITestCase):
         """
         pass
 
-
-
 class UICSVExportFactsNested(UITestCase):
     pass
 

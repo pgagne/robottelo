@@ -1,10 +1,10 @@
-"""Test for virt-who configure UI
+"""Test for virt-who configure API
 
 :Requirement: Virtwho-configure
 
 :CaseLevel: Acceptance
 
-:CaseComponent: UI
+:CaseComponent: API
 
 :TestType: Functional
 
@@ -14,96 +14,7 @@
 """
 
 from robottelo.decorators import run_only_on, stubbed, tier1, tier2, tier3
-from robottelo.test import UITestCase, TestCase, APITestCase
-
-
-class VirtWhoConfigUITestCase(UITestCase):
-    """Implements Virt-who-configure UI tests"""
-
-    @run_only_on('sat')
-    @stubbed()
-    @tier1
-    def test_positive_welcome_page(self):
-        """
-        :id: e25804fd-98cb-46bb-aa29-958ceb361292
-
-        :steps:
-            1. Verify UI Elements on welcome page welcome page
-        """
-
-    @run_only_on('sat')
-    @stubbed()
-    @tier1
-    def test_positive_configurations_page(self):
-        """
-        :id: fa6d5ce4-08b7-41fa-b7ab-ac5a018cf68a
-
-        :steps:
-            1. Create virt-who-configurations
-            2. Verify the new virt-who Configurations UI (the page which lists all virt-who configurations)
-
-
-        """
-        pass
-
-    @run_only_on('sat')
-    @stubbed()
-    @tier1
-    def test_postitve_config_change_redeploy(self):
-        """ change the config and redeploy the script.
-
-        :id: 466d07b3-3cc7-43ef-b820-a5510b43e4dd
-
-        :steps:
-            1. Edit virt-who configuration and verify the updated shell script, redeploy the script
-        """
-
-
-    @run_only_on('sat')
-    @stubbed()
-    @tier1
-    def test_negative_virt_who_user_login(self):
-        """ Make sure the users created by virt-who config is not able to access UI/CLI
-        :id: 9a8bb27a-af91-47cc-9004-6e3497363dbb
-
-        :steps:
-            1. Create a virt-who configuration
-            2. Attempt to login the UI with the user created by the virt-who configurator. Verify the login is blocked
-            3. Attempt to login using Hammer with the user created by the virt-who configurator. Verify the login is blocked
-            4. Attempt to click the username link displayed in related task details.
-        """
-
-    @run_only_on('sat')
-    @stubbed()
-    @tier1
-    def test_positive_config_page_populated(self):
-        """DESCRIPTION
-
-        :id: db6bbc68-2047-4c7d-af5b-31aee0030318
-
-        :steps:
-            1. Create multiple virt-who configurations
-
-
-        :expectedresults: All configurations are listed on the config page
-
-        :Caseautomation: notautomated
-
-        :CaseImportance: Critical
-        """
-
-    @run_only_on('sat')
-    @stubbed()
-    @tier1
-    def test_positive_config_page_empty(self):
-        """
-
-        :id: bb208160-9bd0-49ee-8971-6f71d48808fb
-
-        :steps:
-            1. Create multiple virt-who configurations
-        """
-        pass
+from robottelo.test import TestCase, APITestCase
 
 
 class VirtWhoConfigAPI(APITestCase):
@@ -120,7 +31,6 @@ class VirtWhoConfigAPI(APITestCase):
 
 
         """
-        pass
 
     @run_only_on('sat')
     @stubbed()
@@ -135,7 +45,6 @@ class VirtWhoConfigAPI(APITestCase):
 
         :return:
         """
-        pass
 
     @run_only_on('sat')
     @stubbed()
@@ -155,8 +64,6 @@ class VirtWhoConfigAPI(APITestCase):
     def test_postive_config_intervals(self):
         """ Verify intervals Intervals
 
-        :steps:
-
         :id: 7e1bb498-4e63-44e8-be97-83e07601f56d
 
         :steps:
@@ -165,63 +72,6 @@ class VirtWhoConfigAPI(APITestCase):
             3. Verify a report is sent every hour
             4. Repeat for each supported interval.
         """
-
-
-class VirtWhoConfigDashboardUITestCase(UITestCase):
-    """
-    6. Review UI Dashboard
-        - No reports
-        - Out of Date
-        - Up to Date
-        - Latest out of date Configurations
-
-    """
-
-    @run_only_on('sat')
-    @stubbed()
-    @tier1
-    def test_positive_dashboard_no_reports(self):
-        """
-        - No reports
-
-        """
-        pass
-
-    @run_only_on('sat')
-    @stubbed()
-    @tier1
-    def test_positive_dashboard_out_of_date(self):
-        """
-        - Out of Date
-
-        :return:
-        """
-        pass
-
-    @run_only_on('sat')
-    @stubbed()
-    @tier1
-    def test_positive_dashboard_up_to_date(self):
-        """
-        - Up to Date
-        :return:
-        """
-        pass
-
-    @run_only_on('sat')
-    @stubbed()
-    @tier1
-    def test_positive_lastest_out_of_date(self):
-        """Verify dashboard widget Latest out of date Configurations
-
-        :id: 1df6d171-df57-41ef-9443-c7bb15aab473
-
-        :steps:
-            1.Latest out of date Configurations
-        """
-
-
-
 
 
 class VirtWhoConfigRoleApiTests(APITestCase):
@@ -242,8 +92,10 @@ class VirtWhoConfigRoleApiTests(APITestCase):
             5. Verify the user can see virt-who reporting information through the dashboard
             6. Verify the user can do no other actions
         """
-        pass
-    
+
+    @run_only_on('sat')
+    @stubbed()
+    @tier1
     def test_negative_role_manager(self):
         """
 
@@ -253,8 +105,10 @@ class VirtWhoConfigRoleApiTests(APITestCase):
 
         :return:
         """
-        pass
 
+    @run_only_on('sat')
+    @stubbed()
+    @tier1
     def test_positive_role_reporter(self):
         """ Verify virt-who Reporter role
 
@@ -266,8 +120,10 @@ class VirtWhoConfigRoleApiTests(APITestCase):
             c. Create a vm to cause virt-who to send a report to satellite.
             d. Verify the virt-who server send a report to the satellite.
         """
-        pass
 
+    @run_only_on('sat')
+    @stubbed()
+    @tier1
     def test_negative_role_reporter(self):
         """Verify virt-who Reporter role
             :id: 7dee0965-9ec4-4d76-a6ae-f2eec1960bac
@@ -277,8 +133,10 @@ class VirtWhoConfigRoleApiTests(APITestCase):
 
         :return:
         """
-        pass
 
+    @run_only_on('sat')
+    @stubbed()
+    @tier1
     def test_positive_role_viewer(self):
         """ Verify virt-who viewer role
 
@@ -289,8 +147,10 @@ class VirtWhoConfigRoleApiTests(APITestCase):
             b. Verify the user can view virt-who configurations.
             c. Verify the user CANNOT delete or modify virt-who configurations
         """
-        pass
 
+    @run_only_on('sat')
+    @stubbed()
+    @tier1
     def test_negative_role_viewer(self):
         """Verify virt-who viewer role
 
@@ -304,9 +164,11 @@ class VirtWhoConfigRoleApiTests(APITestCase):
         pass
 
 
-
 class VirtWhoConfigUpgrade(APITestCase):
 
+    @run_only_on('sat')
+    @stubbed()
+    @tier1
     def test_positive_satellite_upgrade(self):
         """ Satellite upgrade
 
@@ -326,49 +188,11 @@ class VirtWhoConfigUpgrade(APITestCase):
         """
 
 
+class VirtWhoConfigGeneralTestcase(TestCase):
 
-
-
-
-
-
-class VirtWhoConfigCLITestCase():
-    def test_positive_create_cli_deploy_ui(self):
-        """Verify  “hammer virt-who-config”
-
-        :id: e273e2b3-79dc-46f5-8925-688f45f6b192
-
-        :steps:
-            1. Create config in UI, deploy using “hammer virt-who-config deploy”
-        """
-
-    def test_positive_create_cli_deploy_cli(self):
-        """ Verify  “hammer virt-who-config
-
-        :id: 776abf86-a96a-4b3a-8a6e-92face670471
-
-        :steps:
-            1. Create config using hammer, deploy using hammer.
-        """
-    pass
-
-    def test_negative_virt_who_user_login(self):
-        """ Make sure the users created by virt-who config is not able to access UI/CLI
-
-        :id: 1fe2daec-b1b0-4dd9-bfa2-cd81ee13977b
-
-        :steps:
-            1. Create a virt-who configuration
-            2. Attempt to login the UI with the user created by the virt-who configurator. Verify the login is blocked
-            3. Attempt to login using Hammer with the user created by the virt-who configurator. Verify the login is blocked
-            4. Attempt to click the username link displayed in related task details.
-        """
-
-
-
-
-class VirtWhoConfigEndToEnd(TestCase):
-
+    @run_only_on('sat')
+    @stubbed()
+    @tier1
     def test_positive_hypervisors(self):
         """End to End scenarios. For all supported Hypervisors (Libvirt, vmware, RHEV, Hyper-V, Xen)
 
@@ -386,8 +210,9 @@ class VirtWhoConfigEndToEnd(TestCase):
                 9. Repeat for each supported hypervisor (Libvirt, vmware, RHEV, Hyper-V, Xen)
         """
 
-class VirtWhoConfigGeneralTestcase(TestCase):
-
+    @run_only_on('sat')
+    @stubbed()
+    @tier1
     def test_positive_multiple_config_single_instance(self):
         """ Create multiple configs, add to same virt-who instance
 
@@ -402,6 +227,9 @@ class VirtWhoConfigGeneralTestcase(TestCase):
 
         """
 
+    @run_only_on('sat')
+    @stubbed()
+    @tier1
     def test_positive_multiple_config_same_instance(self):
         """Create multiple configs for multiple virt-who instances
 
@@ -417,6 +245,9 @@ class VirtWhoConfigGeneralTestcase(TestCase):
 
         """
 
+    @run_only_on('sat')
+    @stubbed()
+    @tier1
     def test_positive_delete_config_delete_user(self):
         """Verify when a config is deleted the associated user is deleted.
 
@@ -429,6 +260,9 @@ class VirtWhoConfigGeneralTestcase(TestCase):
 
         """
 
+    @run_only_on('sat')
+    @stubbed()
+    @tier1
     def test_positive_register_user_password(self):
         """Register guest with username/password
 
@@ -443,6 +277,9 @@ class VirtWhoConfigGeneralTestcase(TestCase):
 
         """
 
+    @run_only_on('sat')
+    @stubbed()
+    @tier1
     def test_positive_register_guess_no_subs(self):
         """Register guest with activation key with no subscriptions
 
@@ -456,6 +293,9 @@ class VirtWhoConfigGeneralTestcase(TestCase):
 
         """
 
+    @run_only_on('sat')
+    @stubbed()
+    @tier1
     def test_positive_virt_who_proxy(self):
         """ Test virt-who with web proxy
 
@@ -468,6 +308,9 @@ class VirtWhoConfigGeneralTestcase(TestCase):
                 4. Verify that reports are sent to the virt-who server.
         """
 
+    @run_only_on('sat')
+    @stubbed()
+    @tier1
     def test_positive_filtering_whitelist(self):
         """ Whitelist filters
         :id: f871ab49-1807-4a28-9bfc-a7f313602cc0
@@ -483,6 +326,9 @@ class VirtWhoConfigGeneralTestcase(TestCase):
         :expectedresult: Correct config file generated, non-whitelisted servers are not reported.
         """
 
+    @run_only_on('sat')
+    @stubbed()
+    @tier1
     def test_positive_filtering_blacklist(self):
         """ Blacklist filters
 
@@ -500,6 +346,9 @@ class VirtWhoConfigGeneralTestcase(TestCase):
         :expectedresult: Correct config file generated, Blacklisted Hypervisors are not reported.
         """
 
+    @run_only_on('sat')
+    @stubbed()
+    @tier1
     def test_positive_filtering_unlimited(self):
         """Unlimited filters
 
@@ -510,6 +359,9 @@ class VirtWhoConfigGeneralTestcase(TestCase):
                 b. Verify all hypervisors hosts are reported to Satellite and attach to VDC subscriptions.
         """
 
+    @run_only_on('sat')
+    @stubbed()
+    @tier1
     def test_positive_intervals(self):
         """ Verify Intervals
         :id: 76a31b43-1738-4e6a-acd7-604fff19ae79
