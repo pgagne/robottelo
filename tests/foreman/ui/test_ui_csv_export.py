@@ -83,29 +83,76 @@ class UICSVExportHostsColumns(UITestCase):
         """
 
     def test_positive_name(self):
-        pass
+        """
+        :setup:
+            Create multiple host with all variations of hostname
+        :steps:
+            1. Export the CSV page in the UI.
+
+        :expectedresults: Exported CSV will contain the correct text for Hostname
+        """
 
     def test_positive_os(self):
-        pass
+        """
+        :setup:
+            Create multiple host with multiple variations of OS
+        :steps:
+            1. Export the CSV page in the UI.
 
+        :expectedresults: Exported CSV will contain the correct text for OS
+        """
 
     def test_positive_enviroment(self):
-        pass
+        """
+        :setup:
+            Create multiple host with multiple variations of Enviroment
+        :steps:
+            1. Export the CSV page in the UI.
+
+        :expectedresults: Exported CSV will contain the correct text for Enviroment
+        """
 
     def test_negative_enviroment(self):
-        pass
+        """
+        :setup:
+            Create  host with no enviroment
+        :steps:
+            1. Export the CSV page in the UI.
+
+        :expectedresults: Exported CSV Enviroment coloumn will be empty.
+        """
 
     def test_positive_model_baremetal(self):
-        pass
+        """
+        :setup:
+            Create  baremetal host
+        :steps:
+            1. Export the CSV page in the UI.
+
+        :expectedresults: Verify the hardware model info is included in the CSV file
+        """
 
     def test_positive_compute_resource(self):
-        pass
+        """
+        :id: 81fdde68-cd63-4793-9a44-f26b5098fbd9
+
+        :setup:
+            Create Compute resource host
+
+        :steps:
+            1. Export CSV page in the UI
+
+        :expectedresults: Verify the compute resource name is in the model column in the exported CSV
+
+        :return:
+        """
 
     def test_positive_last_report(self):
         pass
 
     def test_negative_last_report(self):
         """
+        :setup
         test entry with no last report time
         :return:
         """
