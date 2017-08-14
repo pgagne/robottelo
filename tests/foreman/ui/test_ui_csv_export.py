@@ -148,15 +148,27 @@ class UICSVExportHostsColumns(UITestCase):
         """
 
     def test_positive_last_report(self):
-        pass
+        """
+        :setup:
+            Populate puppet facts page with entries with last report time
+        :steps:
+            1. Export CSV page in the UI
+
+        :expectedresults: verify the lasted reported time is in the correct format in the CSV.
+
+        """
 
     def test_negative_last_report(self):
         """
-        :setup
-        test entry with no last report time
-        :return:
+        :id: c4293168-8217-447f-add2-e5ab495f9acd
+
+        :setup:
+            Populate puppet facts page with entries with no last report time
+        :steps:
+            1. Export CSV page in the UI
+
+        :expectedresults: verify the lasted reported time is in the correct format in the CSV.
         """
-        pass
 
 class UICSVExportFacts(UITestCase):
 
