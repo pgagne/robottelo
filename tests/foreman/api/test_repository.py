@@ -1459,6 +1459,49 @@ class DockerRepositoryTestCase(APITestCase):
         self.assertIn("DKR1007", str(excinfo.exception))
         self.assertIn("Unauthorized or Not Found", str(excinfo.exception))
 
+    @tier2
+    @run_only_on('sat')
+    def test_positive_create_redhat_registry_with_token(self):
+        """Create and sync Docker-type repo from the Red Hat Container registry
+        Using token based auth, with very long tokens (>255 charaters).
+
+        :id: 79ce54cd-6353-457f-a6d1-08162a1bbe1d
+
+        :expectedresults: A repo is created
+
+        :return:
+        """
+        # First we want to confirm the provided token is > 255 charaters
+        self.assertGreater(len(settings.docker.redhat_registry_password), 255,
+                           msg='Please use a longer token for '
+                               'redhat_registry_password')
+
+        product = entities.Product(organization=self.org).create()
+        for reponame in settings.docker.redhat_registry_repos:
+            with self.subTest(reponame):
+                repo = entities.Repository(
+                    content_type=u'docker',
+                    docker_upstream_name=reponame,
+                    name=reponame,
+                    product=product,
+                    url=settings.docker.redhat_registry_url,
+                    upstream_username=settings.docker.redhat_registry_username,
+                    upstream_password=settings.docker.redhat_registry_password
+                ).create()
+                self.assertEqual(repo.name,reponame)
+                self.assertEqual(repo.docker_upstream_name, reponame)
+                self.assertEqual(repo.content_type, u'docker')
+                self.assertEqual(repo.upstream_username,
+                                 settings.docker.redhat_registry_username)
+                self.assertEqual(repo.upstream_password,
+                                 settings.docker.redhat_registry_password)
+
+
+
+
+
+
+
 
 class OstreeRepositoryTestCase(APITestCase):
     """Tests specific to using ``OSTree`` repositories."""
