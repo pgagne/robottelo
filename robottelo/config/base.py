@@ -386,6 +386,9 @@ class DockerSettings(FeatureSettings):
         self.private_registry_name = None
         self.private_registry_username = None
         self.private_registry_password = None
+        self.redhat_registry_url = None
+        self.redhat_registry_username = None
+        self.redhat_registry_password = None
 
     def read(self, reader):
         """Read docker settings."""
@@ -403,6 +406,12 @@ class DockerSettings(FeatureSettings):
             'docker', 'private_registry_username')
         self.private_registry_password = reader.get(
             'docker', 'private_registry_password')
+        self.redhat_registry_url = reader.get(
+            'docker','redhat_registry_url')
+        self.redhat_registry_username = reader.get(
+            'docker', 'redhat_registry_username')
+        self.redhat_registry_password = reader.get(
+            'docker', 'redhat_registry_password')
 
     def validate(self):
         """Validate docker settings."""
@@ -414,6 +423,18 @@ class DockerSettings(FeatureSettings):
             validation_errors.append(
                 'Both [docker] external_registry_1 and external_registry_2 '
                 'options must be provided.')
+        if not all([self.redhat_registry_url, self.redhat_registry_username,
+                    self.redhat_registry_password]):
+            validation_errors.append('[docker] redhat_registry_url,'
+                                     ' redhat_registry_username, '
+                                     'redhat_registry_password are required')
+
+        #ensure redhat registry token is > 255 charaters
+        if self.redhat_registry_password and \
+                len(self.redhat_registry_password) <= 255:
+            validation_errors.append('[docker] redhat_registry_password must'
+                                     ' be > 255 characters')
+
         return validation_errors
 
     def get_unix_socket_url(self):
