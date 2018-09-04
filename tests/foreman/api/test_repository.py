@@ -1493,8 +1493,7 @@ class DockerRepositoryTestCase(APITestCase):
                 self.assertEqual(repo.content_type, u'docker')
                 self.assertEqual(repo.upstream_username,
                                  settings.docker.redhat_registry_username)
-                self.assertEqual(repo.upstream_password,
-                                 settings.docker.redhat_registry_password)
+
 
 
 
