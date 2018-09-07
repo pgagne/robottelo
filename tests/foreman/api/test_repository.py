@@ -1459,6 +1459,19 @@ class DockerRepositoryTestCase(APITestCase):
         self.assertIn("DKR1007", str(excinfo.exception))
         self.assertIn("Unauthorized or Not Found", str(excinfo.exception))
 
+class TokenAuthContainerRepositoryTestCase(APITestCase):
+    """These test are similar to the ones in ``DockerRepositoryTestCase``,
+    but test with container registries that use really long (>255 or >1024)
+    tokens for passwords.
+
+    """
+
+    @classmethod
+    def setUp(cls):
+        super(TokenAuthContainerRepositoryTestCase, cls).setUpClass()
+        #cls.org = entities.Organization().create()
+        cls.org = entities.Organization(name='testorg1').create() # used for testing, will change to random org later
+
     @tier2
     @run_only_on('sat')
     def test_positive_create_redhat_registry_with_token(self):
@@ -1473,7 +1486,7 @@ class DockerRepositoryTestCase(APITestCase):
         """
         # First we want to confirm the provided token is > 255 charaters
         self.assertGreater(len(settings.docker.redhat_registry_password), 255,
-                           msg='Please use a longer token for '
+                           msg='Please use a longer (>255) token for '
                                'redhat_registry_password')
 
         product = entities.Product(organization=self.org).create()
@@ -1493,8 +1506,7 @@ class DockerRepositoryTestCase(APITestCase):
                 self.assertEqual(repo.content_type, u'docker')
                 self.assertEqual(repo.upstream_username,
                                  settings.docker.redhat_registry_username)
-
-
+        #TODO if we cant find a restrity with passwords >1024 we could just test creating the object with really long passwords, and not syncing it
 
 
 
