@@ -1470,7 +1470,8 @@ class TokenAuthContainerRepositoryTestCase(APITestCase):
     def setUp(cls):
         super(TokenAuthContainerRepositoryTestCase, cls).setUpClass()
         #cls.org = entities.Organization().create()
-        cls.org = entities.Organization(name='testorg1').create() # used for testing, will change to random org later
+        #cls.org = entities.Organization(name='testorg1').create() # used for testing, will change to random org later
+        cls.org = entities.Organization.search(name='testorg1') # used for testing, will change to random org later
 
     @tier2
     @run_only_on('sat')
