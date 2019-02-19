@@ -5,6 +5,7 @@ import logging.config
 
 import os
 import six
+import yaml
 
 from functools import partial
 
@@ -45,16 +46,44 @@ def get_project_root():
         os.pardir,
     ))
 
-
-class INIReader(object):
-    """ConfigParser wrapper able to cast value when reading INI options."""
-    # Helper casters
+class ConfigReader(object):
+    """wrapper able to cast value when reading INI options."""
+    # Helper casters"""
     cast_boolean = casts.Boolean()
     cast_dict = casts.Dict()
     cast_list = casts.List()
     cast_logging_level = casts.LoggingLevel()
     cast_tuple = casts.Tuple()
     cast_webdriver_desired_capabilities = casts.WebdriverDesiredCapabilities()
+
+
+
+
+class YAMLReader(ConfigReader):
+
+    def __init__(self, path):
+        self.config_dict = yaml.safe_load(path)
+
+    def get(self, section, option, default=None, cast=None):
+        if section in self.config_dict and option in self.config_dict[section]:
+            if cast is None or cast in [bool, dict, list]:
+                # YAML can represent these natively, no need to cast
+                value = self.config_dict[section][option]
+            elif cast is tuple:
+                value = self.cast_tuple(self.config_dict[section][option])
+            else:
+                value = cast(self.config_dict[section][option])
+        else:
+            value = default
+        return value
+
+    def has_section(self, section):
+        return section in self.config_dict
+
+
+
+class INIReader(ConfigReader):
+
 
     def __init__(self, path):
         self.config_parser = ConfigParser()
