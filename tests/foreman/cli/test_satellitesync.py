@@ -246,6 +246,7 @@ class RepositoryExportTestCase(CLITestCase):
         self.assertGreaterEqual(len(result.stdout), 1)
 
 
+@run_in_one_thread
 class ContentViewSync(CLITestCase):
     """Implements Content View Export Import tests in CLI
 
