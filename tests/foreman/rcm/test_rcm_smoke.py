@@ -6,9 +6,12 @@ import yaml
 
 from nailgun import entities
 from robottelo import constants
+from robottelo import cli
 from robottelo import manifests
+
 from robottelo.products import YumRepository
 from robottelo.test import TestCase
+from robottelo.api.utils import enable_rhrepo_and_fetchid
 
 
 repo_lists = """
@@ -27,6 +30,10 @@ def load_repo_info() -> dict:
     # Load from variable for testing, will probably be a file later
     repos_info = yaml.load(repo_lists)['rcm_smoke_test']
     return repos_info
+
+def find_repo_sets(org, repo_label):
+    return entities.RepositorySet().search(
+        query={'organization_id': str(org.id), 'search': 'label = {}'.format(repo_label)})
 
 
 class RCMSmokeTest(TestCase):
@@ -48,18 +55,28 @@ class RCMSmokeTest(TestCase):
         # first we go through and enable the repos, and ensure there aren't duplicates
         repo_sets = []
         for repo_label in self.repo_labels:
-            rs = entities.RepositorySet(organization=self.org, label=repo_label).search({'label', 'organization'})
+            rs = find_repo_sets(self.org, repo_label)
             self.assertEqual(len(rs), 1, "Verify only 1 repo named {} exists".format(repo_label))
             rs[0].enable()
             repo_sets.append(rs[0])
 
-        print(repo_sets)
+
+
+
+
+class Debug(TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        super(Debug, cls).setUpClass()
+        cls.org = entities.Organization(id=1).read()
+        cls.lce = entities.LifecycleEnvironment(organization=cls.org, id=1).read()
+
 
     def test_debug(self):
         repo_sets = []
-        repo_label = 'rhel-7-server-dotnet-beta-debug-rpms'
-        product = entities.Product(name='dotNET on RHEL Beta for RHEL Server', organization=self.org).search()[0]
-        rs = entities.RepositorySet(organization=self.org, label=repo_label, product=product).search()
+        repo_label = 'rhel-7-server-dotnet-rpms'
+        rs = find_repo_sets(self.org, repo_label)
         self.assertEqual(len(rs), 1, "Verify only 1 repo named {} exists".format(repo_label))
         rs[0].enable()
         repo_sets.append(rs[0])
