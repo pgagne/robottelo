@@ -60,6 +60,8 @@ class RCMSmokeTest(TestCase):
             rs[0].enable()
             repo_sets.append(rs[0])
 
+        #todo  contentview + filter
+
 
 
 
